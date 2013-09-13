@@ -11,8 +11,9 @@ namespace Application;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Zend\ModuleManager\Feature\ViewHelperProviderInterface;
 
-class Module
+class Module implements ViewHelperProviderInterface
 {
     public function onBootstrap(MvcEvent $e)
     {
@@ -33,6 +34,19 @@ class Module
                 'namespaces' => array(
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
                 ),
+            ),
+        );
+    }
+
+    public function getViewHelperConfig()
+    {
+        return array(
+            'factories' => array(
+                'option' => function ($sm) {
+                    return new \Application\View\Helper\Option(
+                        $sm->getServiceLocator()->get('zfcuser_module_options')
+                    );
+                },
             ),
         );
     }

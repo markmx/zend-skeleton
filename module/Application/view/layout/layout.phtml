@@ -1,55 +1,75 @@
 <?php echo $this->doctype(); ?>
 
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <?php echo $this->headTitle('ZF2 '. $this->translate('Skeleton Application'))->setSeparator(' - ')->setAutoEscape(false) ?>
+<head>
+    <meta charset="utf-8">
+    <?php echo $this->headTitle('ZF2 '. $this->translate('Skeleton Application'))->setSeparator(' - ')->setAutoEscape(false) ?>
 
-        <?php echo $this->headMeta()
-            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
-            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
-        ?>
+    <?php echo $this->headMeta()
+        ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+        ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+    ?>
 
-        <!-- Le styles -->
-        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
-                        ->prependStylesheet($this->basePath() . '/css/style.css')
-                        ->prependStylesheet($this->basePath() . '/css/bootstrap-theme.min.css')
-                        ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css') ?>
+    <!-- Le styles -->
+    <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+                    ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css') ?>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <br/>
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Skeleton Application') ?></a>
+                    </div>
 
-        <!-- Scripts -->
-        <?php echo $this->headScript()
-            ->prependFile($this->basePath() . '/js/bootstrap.min.js')
-            ->prependFile($this->basePath() . '/js/jquery.min.js')
-            ->prependFile($this->basePath() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
-            ->prependFile($this->basePath() . '/js/html5shiv.js',   'text/javascript', array('conditional' => 'lt IE 9',))
-        ; ?>
-
-    </head>
-    <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Skeleton Application') ?></a>
-                </div>
-                <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
-                    </ul>
-                </div><!--/.nav-collapse -->
+                    <div class="collapse navbar-collapse navbar-ex1-collapse">
+                        <ul class="nav navbar-nav">
+                            <?php if (! $this->zfcUserIdentity()): ?>
+                                <?php if ($this->option('enableRegistration')) : ?>
+                                    <li><a href="<?php echo $this->url('zfcuser/register') . ($this->redirect ? '?redirect='.$this->redirect : '') ?>"><?php echo $this->translate('Sign up!'); ?></a></li>
+                                <?php endif; ?>
+                                <li><a href="<?php echo $this->url('zfcuser/login') . ($this->redirect ? '?redirect='.$this->redirect : '') ?>"><?php echo $this->translate('Sign in'); ?></a></li>
+                            <?php else: ?>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">My account <b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="<?php echo $this->url('zfcuser/changeemail') . ($this->redirect ? '?redirect='.$this->redirect : '') ?>"><?php echo $this->translate('Change email'); ?></a></li>
+                                        <li><a href="<?php echo $this->url('zfcuser/changepassword') . ($this->redirect ? '?redirect='.$this->redirect : '') ?>"><?php echo $this->translate('Change password'); ?></a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="<?php echo $this->url('zfcuser/logout') . ($this->redirect ? '?redirect='.$this->redirect : '') ?>"><?php echo $this->translate('Sign out') .' '. $this->zfcUserDisplayName(); ?></a></li>
+                            <?php endif; ?>
+                            <li><a href="#">Reset demo DB</a></li>
+                            <li><a href="#">About</a></li>
+                        </ul>
+                    </div>
+                </nav>
             </div>
-        </nav>
-        <div class="container">
-            <?php echo $this->content; ?>
-            <hr>
-            <footer>
-                <p>&copy; 2005 - <?php echo date('Y') ?> by Zend Technologies Ltd. <?php echo $this->translate('All rights reserved.') ?></p>
-            </footer>
-        </div> <!-- /container -->
-        <?php echo $this->inlineScript() ?>
-    </body>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="jumbotron">
+                    <div class="container">
+                        <h3>Side panel</h3>
+                        <p>Advertising or navigation usage.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <?php echo $this->content; ?>
+            </div>
+        </div>
+    </div>
+    <script src="<?php echo $this->basePath(); ?>/js/jquery.min.js"></script>
+    <script src="<?php echo $this->basePath(); ?>/js/bootstrap.js"></script>
+    <?php echo $this->inlineScript() ?>
+</body>
 </html>
