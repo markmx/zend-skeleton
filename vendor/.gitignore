@@ -6,3 +6,4 @@ autoload.php
 zf-commons/*
 doctrine
 symfony
+hounddog
