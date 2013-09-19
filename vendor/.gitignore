@@ -4,3 +4,5 @@ composer
 zendframework
 autoload.php
 zf-commons/*
+doctrine
+symfony
