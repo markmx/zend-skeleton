@@ -19,7 +19,7 @@ class Option extends AbstractHelper
      * @return mixed
      */
     public function __invoke($option)
-    {trigger_error(get_class($this->options));
+    {
         $method = 'get' . ucfirst($option);
 
         return call_user_func(array($this->options, $method));
