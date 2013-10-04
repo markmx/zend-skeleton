@@ -7,6 +7,12 @@
         "zf2"
     ],
     "homepage": "http://framework.zend.com/",
+    "repositories": [
+        {
+          "type": "vcs",
+          "url": "https://github.com/markmx/DoctrineDataFixtureModule"
+        }
+    ],
     "require": {
         "php": ">=5.3.3",
         "zendframework/zendframework": "2.2.*",
@@ -14,6 +20,6 @@
         "zf-commons/zfc-user": "dev-master",
         "doctrine/doctrine-orm-module": "0.7.*",
         "zf-commons/zfc-user-doctrine-orm": "dev-master",
-        "hounddog/doctrine-data-fixture-module": "0.0.*"
+        "hounddog/doctrine-data-fixture-module": "dev-master"
     }
 }
