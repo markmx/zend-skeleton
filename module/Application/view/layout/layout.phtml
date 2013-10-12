@@ -17,21 +17,15 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <br/>
-                <nav class="navbar navbar-default" role="navigation">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Skeleton Application') ?></a>
-                    </div>
-
-                    <div class="collapse navbar-collapse navbar-ex1-collapse">
-                        <ul class="nav navbar-nav">
+            <div class="span12">
+                <br />
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <a class="brand" href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Skeleton Application') ?></a>
+                        <ul class="nav nav-tabs">
+                            <li class="first">
+                                <li><a href="#">Hi</a></li>
+                            </li>
                             <?php if (! $this->zfcUserIdentity()): ?>
                                 <?php if ($this->option('enableRegistration')) : ?>
                                     <li><a href="<?php echo $this->url('zfcuser/register') . ($this->redirect ? '?redirect='.$this->redirect : '') ?>"><?php echo $this->translate('Sign up!'); ?></a></li>
@@ -47,29 +41,27 @@
                                 </li>
                                 <li><a href="<?php echo $this->url('zfcuser/logout') . ($this->redirect ? '?redirect='.$this->redirect : '') ?>"><?php echo $this->translate('Sign out') .' '. $this->zfcUserDisplayName(); ?></a></li>
                             <?php endif; ?>
-                            <li><a href="#">Reset demo DB</a></li>
+                            <li><a href="<?php echo $this->url('reset-db') ?>">Reset demo DB</a></li>
                             <li><a href="#">About</a></li>
                         </ul>
                     </div>
-                </nav>
+                </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
-                <div class="jumbotron">
-                    <div class="container">
-                        <h3>Side panel</h3>
-                        <p>Advertising or navigation usage.</p>
-                    </div>
+            <div class="span4">
+                <div class="hero-unit">
+                  <h3>Side panel</h3>
+                  <p>Advertising or navigation usage.</p>
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="span8">
                 <?php echo $this->content; ?>
             </div>
         </div>
     </div>
-    <script src="<?php echo $this->basePath(); ?>/js/jquery.min.js"></script>
-    <script src="<?php echo $this->basePath(); ?>/js/bootstrap.js"></script>
+    <script src="<?php echo $this->basePath(); ?>/js/jquery-1.10.2.min.js"></script>
+    <script src="<?php echo $this->basePath(); ?>/js/bootstrap.min.js"></script>
     <?php echo $this->inlineScript() ?>
 </body>
 </html>
