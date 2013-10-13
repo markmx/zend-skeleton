@@ -23,7 +23,7 @@
                     <div class="navbar-inner">
                         <a class="brand" href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Skeleton Application') ?></a>
                         <ul class="nav nav-tabs">
-                            <li class="first"><a href="#">About</a></li>
+                            <li class="first"><a href="<?php echo $this->url('about') ?>">About</a></li>
                             <?php if (! $this->zfcUserIdentity()): ?>
                                 <?php if ($this->option('enableRegistration')) : ?>
                                     <li><a href="<?php echo $this->url('zfcuser/register') . ($this->redirect ? '?redirect='.$this->redirect : '') ?>"><?php echo $this->translate('Sign up!'); ?></a></li>
