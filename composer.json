@@ -20,6 +20,7 @@
         "zf-commons/zfc-user": "dev-master",
         "doctrine/doctrine-orm-module": "0.7.*",
         "zf-commons/zfc-user-doctrine-orm": "dev-master",
-        "hounddog/doctrine-data-fixture-module": "dev-master"
+        "hounddog/doctrine-data-fixture-module": "dev-master",
+        "mwillbanks/zfc-twitter-bootstrap": "@dev"
     }
 }
